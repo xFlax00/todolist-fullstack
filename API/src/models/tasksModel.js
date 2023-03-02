@@ -23,7 +23,7 @@ const deleteTask = async (id) => {
 }
 
 const updateTask = async (title, status, id) => {
-    const query = 'USE tasks SET (title = ?, status = ?) WHERE tasks.id = ?'
+    const query = 'UPDATE tasks SET title = ?, status = ? WHERE id = ?'
 
     const updatedTask = await db.execute(query, [title, status, id])
 

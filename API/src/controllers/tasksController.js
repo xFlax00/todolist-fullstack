@@ -23,11 +23,8 @@ const deleteTask = async (req, res) => {
 }
 
 const updateTask = async (req, res) => {
-    console.log(req.body)
     const { id } = req.params
     const { title, status } = req.body
-    
-    console.log(id)
 
     await tasksModel.updateTask(title, status, id)
 
