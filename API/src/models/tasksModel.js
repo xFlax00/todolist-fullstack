@@ -7,14 +7,22 @@ const getAll = async () => {
 }
 
 const addTask = async (title) => {
-    const query = 'INSERT INTO tasks (title) VALUES (?)'
+    const query = 'INSERT INTO tasks(title, status) VALUES (?, "pendente")'
 
-    const addedTask = db.execute(query, title)
+    const addedTask = await db.execute(query, [title])
 
     return addedTask
 }
 
+const deleteTask = async (id) => {
+    const query = 'DELETE FROM tasks WHERE tasks.id = ?'
+
+    const deletedTask = await db.execute(query, [id])
+
+    return deletedTask
+}
 module.exports = {
     getAll,
-    addTask
+    addTask,
+    deleteTask
 }

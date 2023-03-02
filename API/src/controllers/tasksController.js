@@ -7,7 +7,6 @@ const getAll = async (req, res) => {
 }
 
 const addTask = async (req, res) => {
-    console.log(req.body)
     const { title } = req.body
 
     const task = await tasksModel.addTask(title)
@@ -15,7 +14,16 @@ const addTask = async (req, res) => {
     res.status(201).json(task)
 }
 
+const deleteTask = async (req, res) => {
+    const { id } = req.params
+
+    await tasksModel.deleteTask(id)
+
+    res.status(204).json()
+}
+
 module.exports = {
     getAll,
-    addTask
+    addTask,
+    deleteTask
 }
