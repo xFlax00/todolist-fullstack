@@ -7,9 +7,10 @@ const getAll = async () => {
 }
 
 const addTask = async (title) => {
-    const query = 'INSERT INTO tasks(title, status) VALUES (?, "pendente")'
+    const query = 'INSERT INTO tasks(title, status, created_at) VALUES (?, "pendente", ?)'
+    const dateUTC = new Date(Date.now()).toUTCString()
 
-    const addedTask = await db.execute(query, [title])
+    const addedTask = await db.execute(query, [title, dateUTC])
 
     return addedTask
 }
